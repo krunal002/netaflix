@@ -1,10 +1,9 @@
-import logo from './logo.svg';
-import './App.css';
+import { Body } from './pages/Body';
 
 function App() {
   return (
-    <div className="App">
-      <h1>Netflix</h1>
+    <div>
+      <Body/>
     </div>
   );
 }
