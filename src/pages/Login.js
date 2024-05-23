@@ -1,7 +1,11 @@
+import axios from "axios";
 import { useState } from "react";
 import { Header } from "../components/Header";
 import { useDispatch, useSelector } from "react-redux";
-import { setUser } from "../redux/userSlice";
+import { setUser, setIsLoading } from "../redux/userSlice";
+import { useNavigate } from "react-router-dom";
+
+import { toast } from "react-toastify";
 
 export const Login = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -10,11 +14,98 @@ export const Login = () => {
   const [password, setPassword] = useState("");
 
   const dispatch = useDispatch();
-  const user = useSelector((store) => store.app.user);
+  const isLoading = useSelector((store) => store.app.isLoading);
+  const navigate = useNavigate();
 
-  const submitHandler = (e) => {
+  // Toaster
+  const notify = (type, msg) => {
+    if (type === "success") {
+      return toast.success(`${msg}`, {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+      });
+    } else {
+      return toast.error(`${msg}`, {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+      });
+    }
+  };
+
+  // Submit Handler
+  const submitHandler = async (e) => {
     e.preventDefault();
-    dispatch(setUser({ fullName, email, password }));
+    dispatch(setIsLoading(true));
+
+    if (isLoggedIn) {
+      // login
+      try {
+        const user = { email, password };
+        const res = await axios.post(
+          "https://net-back.vercel.app/api/v1/user/login",
+          user,
+          {
+            headers: {
+              "Content-Type": "application/json",
+            },
+            withCredentials: true,
+          }
+        );
+        // console.log("Response: ", res);
+
+        dispatch(setUser(res.data.user));
+        if (res.data.success) {
+          notify("success", res.data.message);
+        }
+        navigate("/browse");
+      } catch (error) {
+        // console.log("Error: ", error);
+        notify("error", error.response.data.message);
+      } finally {
+        dispatch(setIsLoading(false));
+      }
+    } else {
+      // register
+      try {
+        const user = { fullName, email, password };
+        const res = await axios.post(
+          "https://net-back.vercel.app/api/v1/user/register",
+          user,
+          {
+            headers: {
+              "Content-Type": "application/json",
+            },
+            withCredentials: true,
+          }
+        );
+        // console.log("res", res);
+        if (res.data.success) {
+          notify("success", res.data.message);
+        }
+        setIsLoggedIn(true);
+      } catch (error) {
+        // console.log(error);
+        notify("error", error.response.data.message);
+      } finally {
+        dispatch(setIsLoading(false));
+      }
+    }
+
+    setFullName("");
+    setEmail("");
+    setPassword("");
   };
 
   return (
@@ -59,7 +150,7 @@ export const Login = () => {
             className="p-3 my-1 rounded-sm outline-none bg-gray-800 text-white"
           />
           <button className="bg-red-700 text-white font-medium mt-6 p-3 rounded">
-            {isLoggedIn ? "Login" : "Signup"}
+            {isLoading ? "Loading..." : isLoggedIn ? "Login" : "Signup"}
           </button>
           <p className="mt-1 text-white">
             {isLoggedIn ? "New to Netflix?" : "Already have an Account?"}{" "}
