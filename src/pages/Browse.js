@@ -3,6 +3,7 @@ import { Header } from "../components/Header";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import useNowPlayingMovies from "../hooks/useNowPlayingMovies";
+import { MainContainer } from "../components/MainContainer";
 
 export const Browse = () => {
   const user = useSelector((store) => store.app.user);
@@ -20,6 +21,8 @@ export const Browse = () => {
   return (
     <div>
       <Header />
+
+      <MainContainer/>
     </div>
   );
 };

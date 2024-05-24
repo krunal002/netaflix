@@ -6,8 +6,8 @@ export const Body = () => {
   return (
     <div>
         <Routes>
-            <Route path="/" element={<Login/>}/>
-            <Route path="/browse" element={<Browse/>}/>
+            <Route path="/browse" element={<Login/>}/>
+            <Route path="/" element={<Browse/>}/>
         </Routes>
     </div>
   )
