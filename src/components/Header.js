@@ -4,9 +4,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { setUser } from "../redux/userSlice";
+import { setToggle } from "../redux/searchSlice";
 
 export const Header = () => {
   const user = useSelector((store) => store.app.user);
+  const toggle = useSelector((store) => store.search.toggle);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -52,6 +54,10 @@ export const Header = () => {
     }
   };
 
+  const toggleHandler = () =>{
+    dispatch(setToggle())
+  }
+
   return (
     <div className="flex w-[100%] items-center justify-between absolute z-10 px-5 bg-gradient-to-b from-black">
       <img
@@ -73,8 +79,8 @@ export const Header = () => {
             >
               Logout
             </button>
-            <button className="bg-red-700 text-white px-4 py-2 ml-2">
-              Search Movie
+            <button onClick={toggleHandler} className="bg-red-700 text-white px-4 py-2 ml-2">
+              {toggle?"Home":"Search Movie"}
             </button>
           </div>
         </div>

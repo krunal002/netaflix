@@ -8,9 +8,11 @@ import useNowPlayingMovies from "../hooks/useNowPlayingMovies";
 import usePopularMovies from "../hooks/usePopularMovies";
 import useTopRatedMovies from "../hooks/useTopRatedMovies";
 import useUpcomingMovies from "../hooks/useUpcomingMovies";
+import { SearchMovies } from "./Search";
 
 export const Browse = () => {
   const user = useSelector((store) => store.app.user);
+  const toggle = useSelector((store) => store.search.toggle);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -28,10 +30,17 @@ export const Browse = () => {
   return (
     <div>
       <Header />
-      <div>
-        <MainContainer />
-        <MovieContainer />
-      </div>
+      
+      {toggle ? (
+        <div>
+          <SearchMovies />
+        </div>
+      ) : (
+        <div>
+          <MainContainer />
+          <MovieContainer />
+        </div>
+      )}
     </div>
   );
 };
