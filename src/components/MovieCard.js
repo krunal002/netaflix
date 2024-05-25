@@ -6,10 +6,7 @@ export const MovieCard = ({ movie }) => {
 
   return (
     <div className="w-52">
-      <img
-        src={`${Banner_URL}/${movie.poster_path}`}
-        alt="movie-banner"
-      />
+      <img src={`${Banner_URL}/${movie.poster_path}`} alt="movie-banner" />
     </div>
   );
 };
