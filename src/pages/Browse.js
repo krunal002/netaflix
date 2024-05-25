@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import useNowPlayingMovies from "../hooks/useNowPlayingMovies";
 import { MainContainer } from "../components/MainContainer";
+import { MovieContainer } from "../components/MovieContainer";
 
 export const Browse = () => {
   const user = useSelector((store) => store.app.user);
@@ -23,6 +24,7 @@ export const Browse = () => {
       <Header />
       <div>
         <MainContainer />
+        <MovieContainer />
       </div>
     </div>
   );
