@@ -9,3 +9,5 @@ export const options = {
   
 export const Now_Playing_Movies =
   "https://api.themoviedb.org/3/movie/now_playing";
+
+  export const Banner_URL = "https://image.tmdb.org/t/p/w500";
