@@ -3,7 +3,6 @@ import { CiPlay1 } from "react-icons/ci";
 import { CiCircleInfo } from "react-icons/ci";
 
 export const VideoTitle = ({ title, overview }) => {
-    console.log("vt",title, overview)
   return (
     <div className="w-[vw] aspect-video absolute text-white pt-[20%] p-12">
       <h1 className="text-5xl font-bold">{title}</h1>

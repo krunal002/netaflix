@@ -1,12 +1,17 @@
 import React from "react";
+import { useMovieById } from "../hooks/useMovieById";
+import { useSelector } from "react-redux";
 
-export const VideoBackground = () => {
+export const VideoBackground = ({ movieId }) => {
+  useMovieById(movieId);
+  const movieClip = useSelector((store) => store.movie.movieClip);
+  console.log("Clip: ",movieClip)
 
   return (
     <div className="w-screen">
       <iframe
-        className={"w-screen aspect-video"}
-        src={`https://www.youtube.com/embed/owwqjnl27UQ?si=BWvrrvi4sQVR_m9W&autoplay=1&mute=1`}
+        className={ "w-screen aspect-video"}
+        src={`https://www.youtube.com/embed/${movieClip?.key}?si=BWvrrvi4sQVR_m9W&autoplay=1&mute=1`}
         title="YouTube video player"
         frameBorder="0"
         allowFullScreen

@@ -21,8 +21,9 @@ export const Browse = () => {
   return (
     <div>
       <Header />
-
-      <MainContainer/>
+      <div>
+        <MainContainer />
+      </div>
     </div>
   );
 };
