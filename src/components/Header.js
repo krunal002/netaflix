@@ -1,9 +1,56 @@
-import React from "react";
+import axios from "axios";
 import { CgProfile } from "react-icons/cg";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import { setUser } from "../redux/userSlice";
 
 export const Header = () => {
   const user = useSelector((store) => store.app.user);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const notify = (type, msg) => {
+    if (type === "success") {
+      return toast.success(`${msg}`, {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        // pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+      });
+    } else {
+      return toast.error(`${msg}`, {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        // pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+      });
+    }
+  };
+
+  const logoutHandler = async () => {
+    try {
+      const res = await axios.get("http://localhost:8080/api/v1/user/logout");
+
+      if (res.data.success) {
+        notify("success", res.data.message);
+      }
+
+      dispatch(setUser(null));
+      navigate("/");
+    } catch (error) {
+      console.log("Error", error);
+      notify("error", error.response.data.message);
+    }
+  };
 
   return (
     <div className="flex w-[100%] items-center justify-between absolute z-10 px-5 bg-gradient-to-b from-black">
@@ -13,16 +60,25 @@ export const Header = () => {
         alt="netflix-logo"
       />
 
-      <div className="flex items-center">
-        <CgProfile size="20px" color="white" />
-        <h1 className="text-white font-medium text-lg ml-1">{user?.fullName}</h1>
-        <div className="ml-4">
-          <button className="bg-red-700 text-white px-4 py-2">Logout</button>
-          <button className="bg-red-700 text-white px-4 py-2 ml-2">
-            Search Movie
-          </button>
+      {user && (
+        <div className="flex items-center">
+          <CgProfile size="20px" color="white" />
+          <h1 className="text-white font-medium text-lg ml-1">
+            {user?.fullName}
+          </h1>
+          <div className="ml-4">
+            <button
+              className="bg-red-700 text-white px-4 py-2"
+              onClick={logoutHandler}
+            >
+              Logout
+            </button>
+            <button className="bg-red-700 text-white px-4 py-2 ml-2">
+              Search Movie
+            </button>
+          </div>
         </div>
-      </div>
+      )}
     </div>
   );
 };
