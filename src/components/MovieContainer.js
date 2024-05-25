@@ -8,6 +8,9 @@ export const MovieContainer = () => {
     <div className="bg-black">
       <div className="-mt-52 relative z-10">
         <MoviesList title={"Now Playing Movies"} movies={movieCat.nowPlayingMovies} />
+        <MoviesList title={"Top Rated Movies"} movies={movieCat.topRatedMovies} />
+        <MoviesList title={"Popular Movies"} movies={movieCat.popularMovies} />
+        <MoviesList title={"Upcoming Movies"} movies={movieCat.upcomingMovies} />
       </div>
     </div>
   );
