@@ -5,6 +5,8 @@ const userSlice = createSlice({
   initialState: {
     user: null,
     isLoading: false,
+    open: false,
+    id: "",
   },
   reducers: {
     // actions
@@ -14,8 +16,14 @@ const userSlice = createSlice({
     setIsLoading: (state, action) => {
       state.isLoading = action.payload;
     },
+    setOpen: (state, action) => {
+      state.open = action.payload;
+    },
+    getId: (state, action) => {
+      state.id = action.payload;
+    },
   },
 });
 
-export const { setUser, setIsLoading } = userSlice.actions;
+export const { setUser, setIsLoading, setOpen, getId } = userSlice.actions;
 export default userSlice.reducer;
