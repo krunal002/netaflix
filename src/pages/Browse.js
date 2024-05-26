@@ -30,15 +30,19 @@ export const Browse = () => {
   return (
     <div>
       <Header />
-      
+
       {toggle ? (
         <div>
           <SearchMovies />
         </div>
       ) : (
         <div>
-          <MainContainer />
-          <MovieContainer />
+          <div>
+            <MainContainer />
+          </div>
+          <div id="watchMore">
+            <MovieContainer />
+          </div>
         </div>
       )}
     </div>
