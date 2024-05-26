@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Header } from "../components/Header";
 import { useDispatch, useSelector } from "react-redux";
 import { setUser, setIsLoading } from "../redux/userSlice";
@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
 export const Login = () => {
+  const user = useSelector((store) => store.app.user);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [fullName, setFullName] = useState("");
   const [email, setEmail] = useState("");
@@ -16,6 +17,13 @@ export const Login = () => {
   const dispatch = useDispatch();
   const isLoading = useSelector((store) => store.app.isLoading);
   const navigate = useNavigate();
+
+  // navigate to browse
+  useEffect(() => {
+    if (user) {
+      navigate("/browse");
+    }
+  }, [navigate, user]);
 
   // Toaster
   const notify = (type, msg) => {
