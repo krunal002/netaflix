@@ -18,6 +18,7 @@ export const Login = () => {
   const isLoading = useSelector((store) => store.app.isLoading);
   const navigate = useNavigate();
 
+  console.log(user);
   // navigate to browse
   useEffect(() => {
     if (user) {
