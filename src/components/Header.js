@@ -74,12 +74,12 @@ export const Header = () => {
           </h1>
           <div className="ml-4">
             <button
-              className="bg-red-700 text-white px-4 py-2"
+              className="bg-red-700 text-white px-4 py-1"
               onClick={logoutHandler}
             >
               Logout
             </button>
-            <button onClick={toggleHandler} className="bg-red-700 text-white px-4 py-2 ml-2">
+            <button onClick={toggleHandler} className="bg-red-700 text-white px-4 py-1 ml-2">
               {toggle?"Home":"Search Movie"}
             </button>
           </div>
