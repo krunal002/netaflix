@@ -2,7 +2,7 @@
 Welcome to the OTT Application! This full-stack application allows users to explore and stream movies. It includes features such as authentication, movie categories, search functionality, and more. The application is built using React, Redux, Node.js, and Express.
 
 ## Demo
-Check out the live demo of the application [Here]([URL](https://netflix02.netlify.app/)).
+Check out the live demo of the application [Here](https://netflix02.netlify.app/).
 
 ## Features
 User Authentication: Sign up and log in to access exclusive features.
