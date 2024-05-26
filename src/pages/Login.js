@@ -18,7 +18,6 @@ export const Login = () => {
   const isLoading = useSelector((store) => store.app.isLoading);
   const navigate = useNavigate();
 
-  console.log(user);
   // navigate to browse
   useEffect(() => {
     if (user) {
@@ -72,7 +71,7 @@ export const Login = () => {
             withCredentials: true,
           }
         );
-        // console.log("Response: ", res);
+        console.log("Response: ", res);
 
         dispatch(setUser(res.data.user));
         if (res.data.success) {
