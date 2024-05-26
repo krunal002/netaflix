@@ -61,7 +61,7 @@ export const Header = () => {
   return (
     <div className="flex w-[100%] items-center justify-between absolute z-10 px-5 bg-gradient-to-b from-black">
       <img
-        className="w-60"
+        className="w-40"
         src="https://res.cloudinary.com/dfw7zitgl/image/upload/v1712916210/netflix%20clone/logo.png"
         alt="netflix-logo"
       />
