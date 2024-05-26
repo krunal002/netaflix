@@ -79,7 +79,7 @@ export const Login = () => {
         }
         navigate("/browse");
       } catch (error) {
-        // console.log("Error: ", error);
+        console.log("Error: ", error);
         notify("error", error.response.data.message);
       } finally {
         dispatch(setIsLoading(false));
