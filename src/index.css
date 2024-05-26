@@ -26,4 +26,7 @@ code {
     -ms-overflow-style: none; /* IE and Edge */
     scrollbar-width: none; /* Firefox */
   }
+  .custom-shadow {
+    box-shadow: 0 2px 6px rgb(227, 224, 224);
+  }
 }

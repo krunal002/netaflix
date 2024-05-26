@@ -38,16 +38,16 @@ export const SearchMovies = () => {
   };
 
   return (
-    <div>
+    <div className="bg-black h-[100vh]">
       <div className="flex justify-center pt-[10%] w-[100%]">
         <form onSubmit={submitHandler} className="w-[50%]">
-          <div className="flex justify-between shadow-md border-2 p-2 border-gray-200 rounded-lg w-[100%]">
+          <div className="flex justify-between shadow-md custom-shadow border-2 p-2 border-gray-500 rounded-lg w-[100%]">
             <input
               value={inputText}
               onChange={(e) => setInputText(e.target.value)}
               placeholder="Search Movies..."
               type="text"
-              className="w-full outline-none text-lg"
+              className="w-full outline-none text-lg text-white bg-black"
             />
             <button className="bg-red-700 text-white rounded-md px-4 py-2">
               {isLoading ? "Loading..." : "Search"}
@@ -57,7 +57,13 @@ export const SearchMovies = () => {
       </div>
 
       <div>
-        {inputText && <MoviesList title={movieName} movies={searchedMovie} />}
+        {(searchedMovie?.length === 0 || searchedMovie === null) && (
+          <h1 className="text-lg text-white mx-[45%] py-[10%]">
+            No result found
+          </h1>
+        )}
+
+        {movieName && <MoviesList title={movieName} movies={searchedMovie} />}
       </div>
     </div>
   );
