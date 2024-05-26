@@ -128,7 +128,7 @@ export const Login = () => {
       </div>
       <form
         onSubmit={submitHandler}
-        className="left-0 right-0 my-[20vh] mx-auto w-2/12 p-12 absolute bg-black opacity-90 flex flex-col items-center rounded"
+        className="left-0 right-0 my-[20vh] mx-auto w-3/11 p-12 absolute bg-black opacity-90 flex flex-col items-center rounded"
       >
         <h1 className="text-2xl text-white mb-5 font-bold">
           {isLoggedIn ? "Login" : "Signup"}

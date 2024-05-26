@@ -6,7 +6,7 @@ export const MovieContainer = () => {
   const movieCat = useSelector((store) => store.movie);
   return (
     <div className="bg-black pb-5">
-      <div className="-mt-52 relative z-10">
+      <div className="-mt-60 relative z-10">
         <MoviesList
           title={"Now Playing Movies"}
           movies={movieCat.nowPlayingMovies}
